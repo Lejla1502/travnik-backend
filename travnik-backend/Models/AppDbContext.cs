@@ -9,6 +9,6 @@ namespace travnik_backend.Models
 
         }
 
-        DbSet<Event> Events { get; set; } = null!;
+        public DbSet<Event> Events { get; set; } = null!;
     }
 }
