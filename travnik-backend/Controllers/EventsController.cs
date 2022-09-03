@@ -53,5 +53,48 @@ namespace travnik_backend.Controllers
 
             return CreatedAtAction(nameof(Event), new { id = e.Id }, e);
         }
+
+        /*
+         PutEvent method updates the event record with the given Id in the database. 
+        The following code is an HTTP PUT method, as indicated by the [HttpPut] attribute. 
+        The method gets the value of the event record from the body of the HTTP request. 
+        You need to supply the Id both in the request URL and the body and they have to match. 
+        According to the HTTP specification, a PUT request requires the client to send the entire 
+        updated entity, not just the changes.
+
+        The response is 204 (No Content) if the operation is successful.
+
+        Also here we use IActionResult
+         */
+
+        //PUT: api/Events/5
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutEvent(int id, Event e)
+        {
+            if (id != e.Id)
+                return BadRequest();
+
+            _dbContext.Entry(e).State = EntityState.Modified;
+
+            try
+            {
+                await _dbContext.SaveChangesAsync();
+            }
+            catch(DbUpdateConcurrencyException)
+            {
+                if (!EventExists(id))
+                    return NotFound();
+                else
+                    throw;
+            }
+        
+
+            return NoContent();
+        }
+
+        private bool EventExists(long id)
+        {
+            return (_dbContext.Events?.Any(x => x.Id == id)).GetValueOrDefault();
+        }
     }
 }
