@@ -96,5 +96,22 @@ namespace travnik_backend.Controllers
         {
             return (_dbContext.Events?.Any(x => x.Id == id)).GetValueOrDefault();
         }
+
+        //DELETE: api/Events/5
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteEvent(int id)
+        {
+            if (_dbContext.Events == null)
+                return NotFound();
+
+            var e = _dbContext.Events.FirstOrDefault(x => x.Id == id);
+            if (e == null)
+                return NotFound();
+
+            _dbContext.Events.Remove(e);
+            await _dbContext.SaveChangesAsync();
+
+            return NoContent();
+        }
     }
 }
