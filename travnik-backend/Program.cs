@@ -13,7 +13,20 @@ namespace travnik_backend
             builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(
             builder.Configuration.GetConnectionString("DefaultConnection")));
 
+            builder.Services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                    policy =>
+                    {
+                        policy.WithOrigins("http://localhost:4200",
+                                            "https://localhost:4200")
+                                                  .AllowAnyHeader()
+                                                  .AllowAnyMethod(); ;
+                    });
+            });
+
             builder.Services.AddControllers();
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
@@ -28,6 +41,8 @@ namespace travnik_backend
             }
 
             app.UseHttpsRedirection();
+
+            app.UseCors();
 
             app.UseAuthorization();
 
