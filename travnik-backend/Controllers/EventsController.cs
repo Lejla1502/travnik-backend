@@ -28,6 +28,7 @@ namespace travnik_backend.Controllers
 
         //GET: api/Events/5
         [HttpGet("{id}")]
+        [ActionName(nameof(Event))]
         public async Task<ActionResult<Event>> GetEvent(int id)
         {
             if(_dbContext.Events == null)
@@ -41,6 +42,16 @@ namespace travnik_backend.Controllers
                 return NotFound();
 
             return e;
+        }
+
+        //POST: api/Events
+        [HttpPost]
+        public async Task<ActionResult<Event>> PostEvent(Event e)
+        {
+            _dbContext.Events.Add(e);
+            await _dbContext.SaveChangesAsync();
+
+            return CreatedAtAction(nameof(Event), new { id = e.Id }, e);
         }
     }
 }
