@@ -10,5 +10,8 @@
         public string Location { get; set; }
         public double? Fee { get; set; }
 
+        public int OrganizerId { get; set; }
+        public Organizer Organizer { get; set; }
+
     }
 }
