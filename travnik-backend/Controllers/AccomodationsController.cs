@@ -7,11 +7,11 @@ namespace travnik_backend.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AccomodationController : ControllerBase
+    public class AccomodationsController : ControllerBase
     {
         private readonly AppDbContext _dbContext;
 
-        public AccomodationController(AppDbContext dbContext)
+        public AccomodationsController(AppDbContext dbContext)
         {
             _dbContext = dbContext; 
         }
