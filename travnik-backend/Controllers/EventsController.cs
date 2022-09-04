@@ -23,7 +23,7 @@ namespace travnik_backend.Controllers
             if (_dbContext.Events == null)
                 return NotFound();
 
-            return await _dbContext.Events.ToListAsync();
+            return await _dbContext.Events.Include(x=>x.Organizer).ToListAsync();
         }
 
         //GET: api/Events/5
@@ -36,7 +36,7 @@ namespace travnik_backend.Controllers
                 return NotFound();
             }
 
-            var e = await _dbContext.Events.FindAsync(id);
+            var e = await _dbContext.Events.Include(x=>x.Organizer).Where(y=>y.Id==id).FirstAsync();
             
             if(e == null)
                 return NotFound();
