@@ -11,5 +11,7 @@ namespace travnik_backend.Models
 
         public DbSet<Event> Events { get; set; } = null!;
         public DbSet<Organizer> Organizers { get; set; } = null!;
+        public DbSet<Accomodation> Accomodations { get; set; } = null!;
+        public DbSet<AccomodationType> AccomodationTypes { get; set; } = null!;
     }
 }
