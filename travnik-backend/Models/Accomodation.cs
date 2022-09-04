@@ -8,5 +8,8 @@
         public double PricePerNight { get; set; }
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
+
+        public int AccomodationTypeId { get; set; }
+        public AccomodationType AccomodationType { get; set; }  
     }
 }
