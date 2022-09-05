@@ -1,9 +1,13 @@
-﻿namespace travnik_backend.Models
+﻿
+using System.Text.Json.Serialization;
+
+namespace travnik_backend.Models
 {
     public class AccomodationType
     {
         public int Id { get;set; }
         public string Name { get;set; }
-        public List<Accomodation> Accomodations { get; set; }   
+        [JsonIgnore]
+        public List<Models.Accomodation.Accomodation> Accomodations { get; set; }   
     }
 }

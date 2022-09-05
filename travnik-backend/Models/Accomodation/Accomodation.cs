@@ -1,4 +1,4 @@
-﻿namespace travnik_backend.Models
+﻿namespace travnik_backend.Models.Accomodation
 {
     public class Accomodation
     {
@@ -10,6 +10,8 @@
         public string Email { get; set; }
 
         public int AccomodationTypeId { get; set; }
-        public AccomodationType AccomodationType { get; set; }  
+        public AccomodationType AccomodationType { get; set; }
+
+        public List<Features> Features { get; set; }
     }
 }

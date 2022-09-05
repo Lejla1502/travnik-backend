@@ -1,5 +1,7 @@
 ﻿namespace travnik_backend.Models.Event
 {
+    //this is Data Transfer Object- an object that is not mapped to DB, but its used to transfer data either from or to
+    //the server
     public class CreateEventDto
     {
         public int Id { get; set; }
