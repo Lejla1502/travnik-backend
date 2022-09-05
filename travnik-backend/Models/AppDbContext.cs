@@ -15,5 +15,6 @@ namespace travnik_backend.Models
         public DbSet<Models.Accomodation.Accomodation> Accomodations { get; set; } = null!;
         public DbSet<AccomodationType> AccomodationTypes { get; set; } = null!;
         public DbSet<Features> Features { get; set; } = null!;
+        public DbSet<Attraction> Attractions { get; set; } = null!;
     }
 }
