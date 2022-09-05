@@ -24,7 +24,8 @@ namespace travnik_backend.Controllers
             if (_dbContext.Accomodations == null)
                 return NotFound();
 
-            return await _dbContext.Accomodations.Include(x=>x.AccomodationType).ToListAsync();
+            return await _dbContext.Accomodations.Include(x=>x.AccomodationType)
+                .Include(x=>x.Features).ToListAsync();
         }
 
         //GET: api/Accomodations/5
