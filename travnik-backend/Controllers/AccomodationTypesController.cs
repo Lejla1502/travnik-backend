@@ -40,5 +40,15 @@ namespace travnik_backend.Controllers
 
             return at;
         }
+
+        //POST: api/AccomodationType
+        [HttpPost]
+        public async Task<ActionResult<AccomodationType>> PostAccomodationType(AccomodationType at)
+        {
+            _dbContext.AccomodationTypes.Add(at);
+            await _dbContext.SaveChangesAsync();
+
+            return CreatedAtAction(nameof(AccomodationType), new { id = at.Id }, at);
+        }
     }
 }

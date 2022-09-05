@@ -1,4 +1,6 @@
-﻿namespace travnik_backend.Models
+﻿using System.Text.Json.Serialization;
+
+namespace travnik_backend.Models
 {
     public class Organizer
     {
@@ -6,6 +8,7 @@
         public string Name { get; set; }
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
-        public List<Event> Events { get; set; } 
+        [JsonIgnore]
+        public List<Models.Event.Event> Events { get; set; } 
     }
 }

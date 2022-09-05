@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using travnik_backend.Models;
+using travnik_backend.Models.Event;
 
 namespace travnik_backend.Controllers
 {
@@ -46,9 +47,24 @@ namespace travnik_backend.Controllers
 
         //POST: api/Events
         [HttpPost]
-        public async Task<ActionResult<Event>> PostEvent(Event e)
+        public async Task<ActionResult<Event>> PostEvent(CreateEventDto e)
         {
-            _dbContext.Events.Add(e);
+            var organizer = await _dbContext.Organizers.FindAsync(e.OrganizerId);
+            if (organizer == null)
+                return NotFound();
+
+            var newEvent = new Event
+            {
+                Title = e.Title,
+                Text = e.Text,
+                Location =  e.Location,
+                Created = e.Created,
+                DateOfEvent = e.DateOfEvent,
+                Fee = e.Fee,
+                Organizer = organizer
+            };
+
+            _dbContext.Events.Add(newEvent);
             await _dbContext.SaveChangesAsync();
 
             return CreatedAtAction(nameof(Event), new { id = e.Id }, e);

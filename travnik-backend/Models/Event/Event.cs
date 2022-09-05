@@ -1,4 +1,6 @@
-﻿namespace travnik_backend.Models
+﻿using System.Text.Json.Serialization;
+
+namespace travnik_backend.Models.Event
 {
     public class Event
     {
@@ -10,7 +12,9 @@
         public string Location { get; set; }
         public double? Fee { get; set; }
 
+
         public int OrganizerId { get; set; }
+
         public Organizer Organizer { get; set; }
 
     }
