@@ -1,10 +1,9 @@
-﻿namespace travnik_backend.Models
+﻿namespace travnik_backend.Models.News
 {
-    public class Attraction
+    public class News
     {
         public int Id { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }
-        public string Season { get; set; }
     }
 }
