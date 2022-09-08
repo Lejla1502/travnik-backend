@@ -3,9 +3,9 @@ using travnik_backend.Models.Accomodation;
 
 namespace travnik_backend.Models
 {
-    public class AppDbContext:DbContext
+    public class AppDbContext : DbContext
     {
-        public AppDbContext(DbContextOptions<AppDbContext> options):base(options)
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
 
         }
@@ -13,10 +13,19 @@ namespace travnik_backend.Models
         public DbSet<Models.Event.Event> Events { get; set; } = null!;
         public DbSet<Organizer> Organizers { get; set; } = null!;
         public DbSet<Models.Accomodation.Accomodation> Accomodations { get; set; } = null!;
-        public DbSet<AccomodationType> AccomodationTypes { get; set; } = null!;
+        public DbSet<Models.AccomodationType.AccomodationType> AccomodationTypes { get; set; } = null!;
         public DbSet<Features> Features { get; set; } = null!;
         public DbSet<Attraction> Attractions { get; set; } = null!;
         public DbSet<Models.News.News> News { get; set; } = null!;
         public DbSet<Activities> Activities { get; set; } = null!;
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Models.Accomodation.Accomodation>()
+               .HasOne(ac=>ac.AccomodationType)
+               .WithMany(g => g.Accomodations)
+               .HasForeignKey(ac => ac.AccomodationTypeId);
+        }
     }
+
 }

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using travnik_backend.Models;
+using travnik_backend.Models.AccomodationType;
 
 namespace travnik_backend.Controllers
 {

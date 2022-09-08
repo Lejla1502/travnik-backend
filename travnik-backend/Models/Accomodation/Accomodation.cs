@@ -10,7 +10,7 @@
         public string Email { get; set; }
 
         public int AccomodationTypeId { get; set; }
-        public AccomodationType AccomodationType { get; set; }
+        public Models.AccomodationType.AccomodationType AccomodationType { get; set; }
 
         public List<Features> Features { get; set; }
     }

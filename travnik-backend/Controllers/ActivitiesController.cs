@@ -40,5 +40,15 @@ namespace travnik_backend.Controllers
 
             return act;
         }
+
+        //POST: api/Activities
+        [HttpPost]
+        public async Task<ActionResult<Activities>> PostActivity(Activities a)
+        {
+            _dbContext.Activities.Add(a);
+            await _dbContext.SaveChangesAsync();
+
+            return CreatedAtAction(nameof(Activities), new { id = a.Id }, a);
+        }
     }
 }
