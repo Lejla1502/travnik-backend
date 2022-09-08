@@ -29,6 +29,7 @@ namespace travnik_backend.Controllers
 
         //GET: api/AccomodationTypes/5
         [HttpGet("{id}")]
+        [ActionName(nameof(AccomodationType))]
         public async Task<ActionResult<AccomodationType>> GetAccomodation(int id)
         {
             if (_dbContext.AccomodationTypes == null)

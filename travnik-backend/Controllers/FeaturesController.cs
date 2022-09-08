@@ -25,5 +25,31 @@ namespace travnik_backend.Controllers
 
             return await _dbContext.Features.ToListAsync();
         }
+
+        //GET: api/Features/1
+        [HttpGet("{id}")]
+        [ActionName(nameof(Features))]
+        public async Task<ActionResult<Features>> GetFeature(int id)
+        {
+            if (_dbContext.Features == null)
+                return NotFound();
+
+            var f = await _dbContext.Features.FindAsync(id);
+
+            if (f == null)
+                return NotFound();
+
+            return f;
+        }
+
+        //POST: api/Feature
+        [HttpPost]
+        public async Task<ActionResult<Features>> PostFeature(Features feature)
+        {
+            _dbContext.Features.Add(feature);
+            await _dbContext.SaveChangesAsync();
+
+            return CreatedAtAction(nameof(Features), new { id = feature.Id }, feature);
+        }
     }
 }
