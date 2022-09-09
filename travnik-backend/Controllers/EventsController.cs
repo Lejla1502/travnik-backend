@@ -74,7 +74,7 @@ namespace travnik_backend.Controllers
             _dbContext.Events.Add(newEvent);
             await _dbContext.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(Event), new { id = e.Id }, e);
+            return CreatedAtAction(nameof(Event), new { id = newEvent.Id }, newEvent);
         }
 
         /*
