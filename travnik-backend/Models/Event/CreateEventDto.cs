@@ -14,5 +14,6 @@
 
 
         public int OrganizerId { get; set; }
+        public int ActivityId { get; set; }
     }
 }

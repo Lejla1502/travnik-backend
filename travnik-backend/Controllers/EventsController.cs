@@ -64,6 +64,13 @@ namespace travnik_backend.Controllers
                 Organizer = organizer
             };
 
+            if(e.ActivityId!=null && e.ActivityId!=0)
+            {
+                var activity = await _dbContext.Activities.FindAsync(e.ActivityId);
+                if (activity != null)
+                    newEvent.Activities = activity;
+            }
+
             _dbContext.Events.Add(newEvent);
             await _dbContext.SaveChangesAsync();
 

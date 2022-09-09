@@ -17,5 +17,8 @@ namespace travnik_backend.Models.Event
 
         public Organizer Organizer { get; set; }
 
+        public int? ActivitiesId { get; set; }
+        public Activities Activities { get; set; }
+
     }
 }
