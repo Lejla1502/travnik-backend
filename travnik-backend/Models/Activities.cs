@@ -10,5 +10,7 @@ namespace travnik_backend.Models
         public DateTime CreatedAt { get; set; }
         [JsonIgnore]
         public List<Models.Event.Event>? Events { get; set; }
+
+        public List<Attraction> Attractions { get; set; }
     }
 }

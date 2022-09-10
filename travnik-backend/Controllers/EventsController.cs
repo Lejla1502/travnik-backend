@@ -6,7 +6,7 @@ using travnik_backend.Models.Event;
 
 namespace travnik_backend.Controllers
 {
-    [Route("api/[controller]/[action]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class EventsController : ControllerBase
     {
@@ -45,8 +45,8 @@ namespace travnik_backend.Controllers
             return e;
         }
 
-        
-        [HttpGet("{activityId}")]
+        //maybe put somewhere which type is the certain element 
+        [HttpGet("{activityId}/FindEventsByActivityId")]
         public async Task<ActionResult<IEnumerable<Models.Event.Event>>> FindEventsByActivityId(int activityId)
         {
             if (_dbContext.Activities == null)
