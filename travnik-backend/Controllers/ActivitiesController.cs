@@ -28,6 +28,7 @@ namespace travnik_backend.Controllers
 
         //GET: api/Activities/5
         [HttpGet("{id}")]
+        [ActionName(nameof(Activities))]
         public async Task<ActionResult<Activities>> GetActivity(int id)
         {
             if (_dbContext == null)

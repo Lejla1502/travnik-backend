@@ -6,7 +6,7 @@ using travnik_backend.Models.Event;
 
 namespace travnik_backend.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class EventsController : ControllerBase
     {
@@ -43,6 +43,21 @@ namespace travnik_backend.Controllers
                 return NotFound();
 
             return e;
+        }
+
+        
+        [HttpGet("{activityId}")]
+        public async Task<ActionResult<IEnumerable<Models.Event.Event>>> FindEventsByActivityId(int activityId)
+        {
+            if (_dbContext.Activities == null)
+                return NotFound();
+
+            var eventsList = await _dbContext.Events.Where(e=>e.ActivitiesId==activityId).OrderByDescending(x=>x.Created).Take(3).ToListAsync();
+
+            if (eventsList == null)
+                return NotFound();
+
+            return  eventsList;
         }
 
         //POST: api/Events

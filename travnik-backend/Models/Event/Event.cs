@@ -16,7 +16,7 @@ namespace travnik_backend.Models.Event
         public int OrganizerId { get; set; }
 
         public Organizer Organizer { get; set; }
-
+        [JsonIgnore]
         public int? ActivitiesId { get; set; }
         public Activities Activities { get; set; }
 
