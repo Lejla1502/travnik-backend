@@ -34,7 +34,7 @@ namespace travnik_backend.Controllers
             if (_dbContext == null)
                 return NotFound();
 
-            var act = await _dbContext.Activities.FindAsync(id);
+            var act = await _dbContext.Activities.Include(a=>a.Attractions).Where(x=>x.Id==id).FirstOrDefaultAsync();
 
             if (act == null)
                 return NotFound();
