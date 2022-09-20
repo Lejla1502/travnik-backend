@@ -18,6 +18,9 @@ namespace travnik_backend.Models
         public DbSet<Attraction> Attractions { get; set; } = null!;
         public DbSet<Models.News.News> News { get; set; } = null!;
         public DbSet<Activities> Activities { get; set; } = null!;
+        public DbSet<RoomType> RoomTypes { get; set; } = null!;
+        public DbSet<RoomTypePackage> RoomTypePackages { get; set; } = null!;
+        public DbSet<Bed> Beds { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
