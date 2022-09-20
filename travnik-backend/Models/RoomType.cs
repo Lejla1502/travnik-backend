@@ -6,6 +6,11 @@
         public string Name { get; set; }
         public int Capacity { get; set; }
         public double Price { get; set; }
-        public bool IsReserved { get; set; }
+        public RoomAvail Status { get; set; }
+    }
+
+    public enum RoomAvail
+    {
+        Booked, Available
     }
 }
