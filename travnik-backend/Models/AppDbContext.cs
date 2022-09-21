@@ -21,7 +21,7 @@ namespace travnik_backend.Models
         public DbSet<RoomType> RoomTypes { get; set; } = null!;
         public DbSet<RoomTypePackage> RoomTypePackages { get; set; } = null!;
         public DbSet<Bed> Beds { get; set; } = null!;
-
+        public DbSet<Room> Rooms { get; set; } = null!;
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Models.Accomodation.Accomodation>()

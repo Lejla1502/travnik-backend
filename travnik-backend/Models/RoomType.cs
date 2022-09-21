@@ -9,7 +9,7 @@
         public RoomAvail Status { get; set; }
         public List<Models.Accomodation.Accomodation> Accomodations { get; set; }
         public List<Bed> Beds { get; set; }
-
+        public List<Room> Rooms { get; set; }
     }
 
     public enum RoomAvail
