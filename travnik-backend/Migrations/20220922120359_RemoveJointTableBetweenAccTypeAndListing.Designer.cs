@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using travnik_backend.Models;
 
@@ -11,9 +12,10 @@ using travnik_backend.Models;
 namespace travnik_backend.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220922120359_RemoveJointTableBetweenAccTypeAndListing")]
+    partial class RemoveJointTableBetweenAccTypeAndListing
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -50,21 +52,6 @@ namespace travnik_backend.Migrations
                     b.HasIndex("RoomTypesId");
 
                     b.ToTable("AccomodationRoomType");
-                });
-
-            modelBuilder.Entity("AccomodationTypeListing", b =>
-                {
-                    b.Property<int>("AccomodationTypesId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ListingId")
-                        .HasColumnType("int");
-
-                    b.HasKey("AccomodationTypesId", "ListingId");
-
-                    b.HasIndex("ListingId");
-
-                    b.ToTable("AccomodationTypeListing");
                 });
 
             modelBuilder.Entity("ActivitiesAttraction", b =>
@@ -313,32 +300,6 @@ namespace travnik_backend.Migrations
                     b.ToTable("Listings");
                 });
 
-            modelBuilder.Entity("travnik_backend.Models.ListingType", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("ListingId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ListingId");
-
-                    b.ToTable("ListingType");
-                });
-
             modelBuilder.Entity("travnik_backend.Models.News.News", b =>
                 {
                     b.Property<int>("Id")
@@ -485,21 +446,6 @@ namespace travnik_backend.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("AccomodationTypeListing", b =>
-                {
-                    b.HasOne("travnik_backend.Models.AccomodationType.AccomodationType", null)
-                        .WithMany()
-                        .HasForeignKey("AccomodationTypesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("travnik_backend.Models.Listing", null)
-                        .WithMany()
-                        .HasForeignKey("ListingId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("ActivitiesAttraction", b =>
                 {
                     b.HasOne("travnik_backend.Models.Activities", null)
@@ -558,13 +504,6 @@ namespace travnik_backend.Migrations
                     b.Navigation("Organizer");
                 });
 
-            modelBuilder.Entity("travnik_backend.Models.ListingType", b =>
-                {
-                    b.HasOne("travnik_backend.Models.Listing", null)
-                        .WithMany("ListingTypes")
-                        .HasForeignKey("ListingId");
-                });
-
             modelBuilder.Entity("travnik_backend.Models.Room", b =>
                 {
                     b.HasOne("travnik_backend.Models.Accomodation.Accomodation", "Accomodation")
@@ -597,11 +536,6 @@ namespace travnik_backend.Migrations
             modelBuilder.Entity("travnik_backend.Models.Activities", b =>
                 {
                     b.Navigation("Events");
-                });
-
-            modelBuilder.Entity("travnik_backend.Models.Listing", b =>
-                {
-                    b.Navigation("ListingTypes");
                 });
 
             modelBuilder.Entity("travnik_backend.Models.Organizer", b =>

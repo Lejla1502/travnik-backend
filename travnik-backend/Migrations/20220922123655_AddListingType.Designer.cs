@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using travnik_backend.Models;
 
@@ -11,9 +12,10 @@ using travnik_backend.Models;
 namespace travnik_backend.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220922123655_AddListingType")]
+    partial class AddListingType
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -325,7 +327,7 @@ namespace travnik_backend.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ListingId")
+                    b.Property<int>("ListingId")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -560,9 +562,13 @@ namespace travnik_backend.Migrations
 
             modelBuilder.Entity("travnik_backend.Models.ListingType", b =>
                 {
-                    b.HasOne("travnik_backend.Models.Listing", null)
+                    b.HasOne("travnik_backend.Models.Listing", "Listing")
                         .WithMany("ListingTypes")
-                        .HasForeignKey("ListingId");
+                        .HasForeignKey("ListingId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Listing");
                 });
 
             modelBuilder.Entity("travnik_backend.Models.Room", b =>

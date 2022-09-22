@@ -7,5 +7,6 @@
         public string Description { get; set; }
         public DateTime CreatedAt { get; set; }
         public List<Models.AccomodationType.AccomodationType> AccomodationTypes { get; set; }
+        public List<ListingType> ListingTypes { get; set; }
     }
 }
