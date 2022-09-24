@@ -14,6 +14,6 @@
 
         public List<Features> Features { get; set; }
         public List<RoomType> RoomTypes { get; set; }
-        public List<Room> Rooms { get; set; }
+        //public List<RoomName> Rooms { get; set; }
     }
 }

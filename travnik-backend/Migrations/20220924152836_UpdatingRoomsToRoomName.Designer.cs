@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using travnik_backend.Models;
 
@@ -11,9 +12,10 @@ using travnik_backend.Models;
 namespace travnik_backend.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220924152836_UpdatingRoomsToRoomName")]
+    partial class UpdatingRoomsToRoomName
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -403,6 +405,9 @@ namespace travnik_backend.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int?>("AccomodationId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -411,6 +416,8 @@ namespace travnik_backend.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AccomodationId");
 
                     b.HasIndex("RoomTypeId");
 
@@ -425,9 +432,8 @@ namespace travnik_backend.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -573,6 +579,10 @@ namespace travnik_backend.Migrations
 
             modelBuilder.Entity("travnik_backend.Models.RoomName", b =>
                 {
+                    b.HasOne("travnik_backend.Models.Accomodation.Accomodation", null)
+                        .WithMany("Rooms")
+                        .HasForeignKey("AccomodationId");
+
                     b.HasOne("travnik_backend.Models.RoomType", "RoomType")
                         .WithMany("Rooms")
                         .HasForeignKey("RoomTypeId")
@@ -580,6 +590,11 @@ namespace travnik_backend.Migrations
                         .IsRequired();
 
                     b.Navigation("RoomType");
+                });
+
+            modelBuilder.Entity("travnik_backend.Models.Accomodation.Accomodation", b =>
+                {
+                    b.Navigation("Rooms");
                 });
 
             modelBuilder.Entity("travnik_backend.Models.AccomodationType.AccomodationType", b =>

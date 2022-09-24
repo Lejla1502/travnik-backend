@@ -21,7 +21,7 @@ namespace travnik_backend.Models
         public DbSet<RoomType> RoomTypes { get; set; } = null!;
         public DbSet<RoomTypePackage> RoomTypePackages { get; set; } = null!;
         public DbSet<Bed> Beds { get; set; } = null!;
-        public DbSet<Room> Rooms { get; set; } = null!;
+        public DbSet<RoomName> RoomNames { get; set; } = null!;
         public DbSet<Listing> Listings { get; set; } = null!;
         public DbSet<ListingType> ListingTypes { get; set; } = null!;
         protected override void OnModelCreating(ModelBuilder modelBuilder)
