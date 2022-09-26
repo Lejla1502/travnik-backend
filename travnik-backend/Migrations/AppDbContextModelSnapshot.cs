@@ -127,6 +127,10 @@ namespace travnik_backend.Migrations
                     b.Property<double>("PricePerNight")
                         .HasColumnType("float");
 
+                    b.Property<string>("ShortDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("AccomodationTypeId");
