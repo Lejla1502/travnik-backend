@@ -24,12 +24,25 @@ namespace travnik_backend.Models
         public DbSet<RoomName> RoomNames { get; set; } = null!;
         public DbSet<Listing> Listings { get; set; } = null!;
         public DbSet<ListingType> ListingTypes { get; set; } = null!;
+        public DbSet<AccomodationRoomName> AccomodationRoomNames { get; set; } = null!;
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Models.Accomodation.Accomodation>()
                .HasOne(ac=>ac.AccomodationType)
                .WithMany(g => g.Accomodations)
                .HasForeignKey(ac => ac.AccomodationTypeId);
+
+
+            modelBuilder.Entity<AccomodationRoomName>()
+                .HasKey(bc => new { bc.AccomodationId, bc.RoomNameId });
+            modelBuilder.Entity<AccomodationRoomName>()
+                .HasOne(bc => bc.Accomodation)
+                .WithMany(b => b.AccomodationRoomNames)
+                .HasForeignKey(bc => bc.AccomodationId);
+            modelBuilder.Entity<AccomodationRoomName>()
+                .HasOne(bc => bc.RoomName)
+                .WithMany(c => c.AccomodationRoomNames)
+                .HasForeignKey(bc => bc.RoomNameId);
         }
     }
 

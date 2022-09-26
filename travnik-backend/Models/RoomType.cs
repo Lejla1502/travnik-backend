@@ -7,7 +7,7 @@
         //public int Capacity { get; set; }
         //public double Price { get; set; }
         //public RoomAvail Status { get; set; }
-        public List<Models.Accomodation.Accomodation> Accomodations { get; set; }
+        //public List<AccomodationRoomType> AccomodationRoomTypes { get; set; }
         public List<Bed> Beds { get; set; }
         public List<RoomName> Rooms { get; set; }
     }
