@@ -11,8 +11,9 @@
         //public Models.Accomodation.Accomodation Accomodation { get; set; }
         public int RoomTypeId { get; set; }
         public RoomType RoomType { get; set; }
-
         public List<AccomodationRoomName> AccomodationRoomNames { get; set; }
+        //public List<BedRoomName> BedRoomNames { get; set; }
+  
 
     }
 }

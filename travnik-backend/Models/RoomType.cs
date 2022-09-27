@@ -8,7 +8,7 @@
         //public double Price { get; set; }
         //public RoomAvail Status { get; set; }
         //public List<AccomodationRoomType> AccomodationRoomTypes { get; set; }
-        public List<Bed> Beds { get; set; }
+        //public List<Bed> Beds { get; set; }
         public List<RoomName> Rooms { get; set; }
     }
 
