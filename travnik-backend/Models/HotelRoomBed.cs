@@ -4,6 +4,7 @@ namespace travnik_backend.Models
 {
     public class HotelRoomBed
     {
+        public int HotelRoomBedId { get; set; }
         public int AccomodationRoomNameId { get; set; }
         public AccomodationRoomName AccomodationRoomName { get; set; }
         public int BedId { get; set; }

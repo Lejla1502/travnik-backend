@@ -45,8 +45,8 @@ namespace travnik_backend.Models
                 .WithMany(c => c.AccomodationRoomNames)
                 .HasForeignKey(bc => bc.RoomNameId);
 
-            //modelBuilder.Entity<HotelRoomBed>()
-            //   .HasKey(bc => new { bc.BedId, bc.AccomodationRoomNameId });
+            modelBuilder.Entity<HotelRoomBed>()
+               .HasKey(bc => new { bc.BedId, bc.AccomodationRoomNameId });
             modelBuilder.Entity<HotelRoomBed>()
                 .HasOne(bc => bc.Bed)
                 .WithMany(b => b.HotelRoomBeds)
