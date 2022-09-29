@@ -7,7 +7,5 @@
         public string Size { get; set; }
         //public int Qty { get; set; }
         //public List<RoomType> RoomTypes { get; set; }
-        //public List<BedRoomName> BedRoomNames { get; set; }
-        public List<HotelRoomBed> HotelRoomBeds { get; set; }
     }
 }

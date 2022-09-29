@@ -34,7 +34,7 @@ namespace travnik_backend.Migrations
 
                     b.HasIndex("FeaturesId");
 
-                    b.ToTable("AccomodationFeatures");
+                    b.ToTable("AccomodationFeatures", (string)null);
                 });
 
             modelBuilder.Entity("AccomodationTypeListing", b =>
@@ -49,7 +49,7 @@ namespace travnik_backend.Migrations
 
                     b.HasIndex("ListingId");
 
-                    b.ToTable("AccomodationTypeListing");
+                    b.ToTable("AccomodationTypeListing", (string)null);
                 });
 
             modelBuilder.Entity("ActivitiesAttraction", b =>
@@ -64,7 +64,7 @@ namespace travnik_backend.Migrations
 
                     b.HasIndex("AttractionsId");
 
-                    b.ToTable("ActivitiesAttraction");
+                    b.ToTable("ActivitiesAttraction", (string)null);
                 });
 
             modelBuilder.Entity("ListingListingType", b =>
@@ -79,7 +79,7 @@ namespace travnik_backend.Migrations
 
                     b.HasIndex("ListingsId");
 
-                    b.ToTable("ListingListingType");
+                    b.ToTable("ListingListingType", (string)null);
                 });
 
             modelBuilder.Entity("travnik_backend.Models.Accomodation.Accomodation", b =>
@@ -120,7 +120,7 @@ namespace travnik_backend.Migrations
 
                     b.HasIndex("AccomodationTypeId");
 
-                    b.ToTable("Accomodations");
+                    b.ToTable("Accomodations", (string)null);
                 });
 
             modelBuilder.Entity("travnik_backend.Models.AccomodationRoomName", b =>
@@ -131,6 +131,9 @@ namespace travnik_backend.Migrations
                     b.Property<int>("RoomNameId")
                         .HasColumnType("int");
 
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
                     b.Property<int>("NumOfRoomsOfThisType")
                         .HasColumnType("int");
 
@@ -138,7 +141,7 @@ namespace travnik_backend.Migrations
 
                     b.HasIndex("RoomNameId");
 
-                    b.ToTable("AccomodationRoomNames");
+                    b.ToTable("AccomodationRoomNames", (string)null);
                 });
 
             modelBuilder.Entity("travnik_backend.Models.AccomodationType.AccomodationType", b =>
@@ -159,7 +162,7 @@ namespace travnik_backend.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AccomodationTypes");
+                    b.ToTable("AccomodationTypes", (string)null);
                 });
 
             modelBuilder.Entity("travnik_backend.Models.Activities", b =>
@@ -183,7 +186,7 @@ namespace travnik_backend.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Activities");
+                    b.ToTable("Activities", (string)null);
                 });
 
             modelBuilder.Entity("travnik_backend.Models.Attraction", b =>
@@ -208,7 +211,7 @@ namespace travnik_backend.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Attractions");
+                    b.ToTable("Attractions", (string)null);
                 });
 
             modelBuilder.Entity("travnik_backend.Models.Bed", b =>
@@ -229,25 +232,7 @@ namespace travnik_backend.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Beds");
-                });
-
-            modelBuilder.Entity("travnik_backend.Models.BedRoomName", b =>
-                {
-                    b.Property<int>("BedId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RoomNameId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("NumberOfBedForThisRoom")
-                        .HasColumnType("int");
-
-                    b.HasKey("BedId", "RoomNameId");
-
-                    b.HasIndex("RoomNameId");
-
-                    b.ToTable("BedRoomNames");
+                    b.ToTable("Beds", (string)null);
                 });
 
             modelBuilder.Entity("travnik_backend.Models.Event.Event", b =>
@@ -291,7 +276,7 @@ namespace travnik_backend.Migrations
 
                     b.HasIndex("OrganizerId");
 
-                    b.ToTable("Events");
+                    b.ToTable("Events", (string)null);
                 });
 
             modelBuilder.Entity("travnik_backend.Models.Features", b =>
@@ -308,7 +293,7 @@ namespace travnik_backend.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Features");
+                    b.ToTable("Features", (string)null);
                 });
 
             modelBuilder.Entity("travnik_backend.Models.Listing", b =>
@@ -332,7 +317,7 @@ namespace travnik_backend.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Listings");
+                    b.ToTable("Listings", (string)null);
                 });
 
             modelBuilder.Entity("travnik_backend.Models.ListingType", b =>
@@ -353,7 +338,7 @@ namespace travnik_backend.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ListingTypes");
+                    b.ToTable("ListingTypes", (string)null);
                 });
 
             modelBuilder.Entity("travnik_backend.Models.News.News", b =>
@@ -374,7 +359,7 @@ namespace travnik_backend.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("News");
+                    b.ToTable("News", (string)null);
                 });
 
             modelBuilder.Entity("travnik_backend.Models.Organizer", b =>
@@ -399,7 +384,7 @@ namespace travnik_backend.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Organizers");
+                    b.ToTable("Organizers", (string)null);
                 });
 
             modelBuilder.Entity("travnik_backend.Models.RoomName", b =>
@@ -421,7 +406,7 @@ namespace travnik_backend.Migrations
 
                     b.HasIndex("RoomTypeId");
 
-                    b.ToTable("RoomNames");
+                    b.ToTable("RoomNames", (string)null);
                 });
 
             modelBuilder.Entity("travnik_backend.Models.RoomType", b =>
@@ -438,7 +423,7 @@ namespace travnik_backend.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("RoomTypes");
+                    b.ToTable("RoomTypes", (string)null);
                 });
 
             modelBuilder.Entity("travnik_backend.Models.RoomTypePackage", b =>
@@ -457,7 +442,7 @@ namespace travnik_backend.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("RoomTypePackages");
+                    b.ToTable("RoomTypePackages", (string)null);
                 });
 
             modelBuilder.Entity("AccomodationFeatures", b =>
@@ -550,25 +535,6 @@ namespace travnik_backend.Migrations
                     b.Navigation("RoomName");
                 });
 
-            modelBuilder.Entity("travnik_backend.Models.BedRoomName", b =>
-                {
-                    b.HasOne("travnik_backend.Models.Bed", "Bed")
-                        .WithMany("BedRoomNames")
-                        .HasForeignKey("BedId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("travnik_backend.Models.RoomName", "RoomName")
-                        .WithMany("BedRoomNames")
-                        .HasForeignKey("RoomNameId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Bed");
-
-                    b.Navigation("RoomName");
-                });
-
             modelBuilder.Entity("travnik_backend.Models.Event.Event", b =>
                 {
                     b.HasOne("travnik_backend.Models.Activities", "Activities")
@@ -612,11 +578,6 @@ namespace travnik_backend.Migrations
                     b.Navigation("Events");
                 });
 
-            modelBuilder.Entity("travnik_backend.Models.Bed", b =>
-                {
-                    b.Navigation("BedRoomNames");
-                });
-
             modelBuilder.Entity("travnik_backend.Models.Organizer", b =>
                 {
                     b.Navigation("Events");
@@ -625,8 +586,6 @@ namespace travnik_backend.Migrations
             modelBuilder.Entity("travnik_backend.Models.RoomName", b =>
                 {
                     b.Navigation("AccomodationRoomNames");
-
-                    b.Navigation("BedRoomNames");
                 });
 
             modelBuilder.Entity("travnik_backend.Models.RoomType", b =>
