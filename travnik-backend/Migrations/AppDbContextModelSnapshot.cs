@@ -37,6 +37,21 @@ namespace travnik_backend.Migrations
                     b.ToTable("AccomodationFeatures");
                 });
 
+            modelBuilder.Entity("AccomodationRoomNameRoomFeatures", b =>
+                {
+                    b.Property<int>("AccomodationRoomNamesId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RoomFeaturesId")
+                        .HasColumnType("int");
+
+                    b.HasKey("AccomodationRoomNamesId", "RoomFeaturesId");
+
+                    b.HasIndex("RoomFeaturesId");
+
+                    b.ToTable("AccomodationRoomNameRoomFeatures");
+                });
+
             modelBuilder.Entity("AccomodationTypeListing", b =>
                 {
                     b.Property<int>("AccomodationTypesId")
@@ -137,6 +152,9 @@ namespace travnik_backend.Migrations
                     b.Property<int>("NumOfRoomsOfThisType")
                         .HasColumnType("int");
 
+                    b.Property<double>("PricePerNight")
+                        .HasColumnType("float");
+
                     b.Property<int>("RoomNameId")
                         .HasColumnType("int");
 
@@ -164,7 +182,7 @@ namespace travnik_backend.Migrations
 
                     b.HasIndex("BedId");
 
-                    b.ToTable("AccomodationRoomNameBed");
+                    b.ToTable("AccomodationRoomNameBeds");
                 });
 
             modelBuilder.Entity("travnik_backend.Models.AccomodationType.AccomodationType", b =>
@@ -410,6 +428,23 @@ namespace travnik_backend.Migrations
                     b.ToTable("Organizers");
                 });
 
+            modelBuilder.Entity("travnik_backend.Models.RoomFeatures", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("RoomFeatures");
+                });
+
             modelBuilder.Entity("travnik_backend.Models.RoomName", b =>
                 {
                     b.Property<int>("Id")
@@ -479,6 +514,21 @@ namespace travnik_backend.Migrations
                     b.HasOne("travnik_backend.Models.Features", null)
                         .WithMany()
                         .HasForeignKey("FeaturesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("AccomodationRoomNameRoomFeatures", b =>
+                {
+                    b.HasOne("travnik_backend.Models.AccomodationRoomName", null)
+                        .WithMany()
+                        .HasForeignKey("AccomodationRoomNamesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("travnik_backend.Models.RoomFeatures", null)
+                        .WithMany()
+                        .HasForeignKey("RoomFeaturesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

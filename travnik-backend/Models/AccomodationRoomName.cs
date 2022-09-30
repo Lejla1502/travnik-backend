@@ -12,7 +12,9 @@ namespace travnik_backend.Models
         public int RoomNameId { get; set; }
         public RoomName RoomName { get; set; }
         public int NumOfRoomsOfThisType { get; set; }
-
+        public double PricePerNight { get; set; }
         public List<AccomodationRoomNameBed> AccomodationRoomNameBeds { get; set; }
+        public List<RoomFeatures> RoomFeatures { get; set; }
+
     }
 }
