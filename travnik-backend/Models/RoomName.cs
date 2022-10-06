@@ -14,6 +14,7 @@
         public List<AccomodationRoomName> AccomodationRoomNames { get; set; }
         //public List<BedRoomName> BedRoomNames { get; set; }
   
-
+        //one to one
+        public RoomNameDetails RoomNameDetails { get; set; }
     }
 }

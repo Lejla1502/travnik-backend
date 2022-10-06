@@ -22,6 +22,7 @@ namespace travnik_backend.Models
         public DbSet<RoomTypePackage> RoomTypePackages { get; set; } = null!;
         public DbSet<Bed> Beds { get; set; } = null!;
         public DbSet<RoomName> RoomNames { get; set; } = null!;
+        public DbSet<RoomNameDetails> RoomNameDetails { get; set; } = null!;
         public DbSet<Listing> Listings { get; set; } = null!;
         public DbSet<ListingType> ListingTypes { get; set; } = null!;
         public DbSet<AccomodationRoomName> AccomodationRoomNames { get; set; } = null!;
@@ -54,6 +55,11 @@ namespace travnik_backend.Models
                 .HasOne(bc => bc.Bed)
                 .WithMany(c => c.AccomodationRoomNameBeds)
                 .HasForeignKey(bc => bc.BedId);
+
+            modelBuilder.Entity<RoomName>()
+           .HasOne(b => b.RoomNameDetails)
+           .WithOne(i => i.RoomName)
+           .HasForeignKey<RoomNameDetails>(b => b.RoomNameId);
 
         }
     }

@@ -40,7 +40,7 @@ namespace travnik_backend.Controllers
             //even though there is accomodation with a given id, it still won't recognize it if it doen't have
             //type id declared and it will return 404
 
-            var a = await _dbContext.Accomodations.Where(y => y.Id == id).Include(x => x.AccomodationType).Include(x => x.AccomodationRoomNames).ThenInclude(x => x.RoomName).ThenInclude(x => x.AccomodationRoomNames).ThenInclude(x => x.AccomodationRoomNameBeds).ThenInclude(x => x.Bed).FirstOrDefaultAsync();
+            var a = await _dbContext.Accomodations.Where(y => y.Id == id).Include(x => x.AccomodationType).Include(x => x.AccomodationRoomNames).ThenInclude(x => x.RoomName).ThenInclude(x => x.AccomodationRoomNames).ThenInclude(x => x.AccomodationRoomNameBeds).ThenInclude(x => x.Bed).Include(x=>x.AccomodationRoomNames).ThenInclude(x=>x.RoomFeatures).FirstOrDefaultAsync();
             // var b=a.Include(x=>x.AccomodationRoomNameBeds).ThenInclude(x=>x.Bed).FirstOrDefaultAsync();
 
             //we nned to use firsOrDefualt so that it doesn't throw an error if it doesn't find an element

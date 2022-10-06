@@ -175,9 +175,6 @@ namespace travnik_backend.Migrations
                     b.Property<int>("BedId")
                         .HasColumnType("int");
 
-                    b.Property<int>("NumOfBedsOfThisType")
-                        .HasColumnType("int");
-
                     b.HasKey("AccomodationRoomNameId", "BedId");
 
                     b.HasIndex("BedId");
@@ -467,6 +464,34 @@ namespace travnik_backend.Migrations
                     b.ToTable("RoomNames");
                 });
 
+            modelBuilder.Entity("travnik_backend.Models.RoomNameDetails", b =>
+                {
+                    b.Property<int>("RoomNameDetailsId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RoomNameDetailsId"), 1L, 1);
+
+                    b.Property<int>("NumOfBathrooms")
+                        .HasColumnType("int");
+
+                    b.Property<int>("NumOfBedrooms")
+                        .HasColumnType("int");
+
+                    b.Property<int>("NumOfLivingrooms")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RoomNameId")
+                        .HasColumnType("int");
+
+                    b.HasKey("RoomNameDetailsId");
+
+                    b.HasIndex("RoomNameId")
+                        .IsUnique();
+
+                    b.ToTable("RoomNameDetails");
+                });
+
             modelBuilder.Entity("travnik_backend.Models.RoomType", b =>
                 {
                     b.Property<int>("Id")
@@ -655,6 +680,17 @@ namespace travnik_backend.Migrations
                     b.Navigation("RoomType");
                 });
 
+            modelBuilder.Entity("travnik_backend.Models.RoomNameDetails", b =>
+                {
+                    b.HasOne("travnik_backend.Models.RoomName", "RoomName")
+                        .WithOne("RoomNameDetails")
+                        .HasForeignKey("travnik_backend.Models.RoomNameDetails", "RoomNameId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("RoomName");
+                });
+
             modelBuilder.Entity("travnik_backend.Models.Accomodation.Accomodation", b =>
                 {
                     b.Navigation("AccomodationRoomNames");
@@ -688,6 +724,9 @@ namespace travnik_backend.Migrations
             modelBuilder.Entity("travnik_backend.Models.RoomName", b =>
                 {
                     b.Navigation("AccomodationRoomNames");
+
+                    b.Navigation("RoomNameDetails")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("travnik_backend.Models.RoomType", b =>

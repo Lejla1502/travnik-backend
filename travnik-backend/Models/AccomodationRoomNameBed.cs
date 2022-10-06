@@ -6,7 +6,8 @@
         public AccomodationRoomName AccomodationRoomName { get; set; }
         public int BedId { get; set; }
         public Bed Bed { get; set; }
-        public int NumOfBedsOfThisType { get; set; }
+       // public int NumOfBedsOfThisType { get; set; }
+        //public string Bedroom1 { get; set; }
 
         //public List<AccomodationRoomNameBed> AccomodationRoomNameBeds { get; set; }
     }
