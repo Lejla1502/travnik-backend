@@ -18,5 +18,8 @@ namespace travnik_backend.Models
         public int RoomNameDetailsId { get; set; }
         public RoomNameDetails RoomNameDetails { get; set; }
 
+        /*many to many between RoomsInRoom and Beds*/
+        public List<RoomsInRoomBeds> RoomsInRoomBeds { get; set; }
+
     }
 }
