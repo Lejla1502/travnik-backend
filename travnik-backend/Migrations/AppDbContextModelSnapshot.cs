@@ -149,8 +149,14 @@ namespace travnik_backend.Migrations
                     b.Property<int>("AccomodationId")
                         .HasColumnType("int");
 
+                    b.Property<bool>("BreakfastIncluded")
+                        .HasColumnType("bit");
+
                     b.Property<int>("NumOfRoomsOfThisType")
                         .HasColumnType("int");
+
+                    b.Property<bool>("PrepaymentNeeded")
+                        .HasColumnType("bit");
 
                     b.Property<double>("PricePerNight")
                         .HasColumnType("float");
@@ -169,13 +175,24 @@ namespace travnik_backend.Migrations
 
             modelBuilder.Entity("travnik_backend.Models.AccomodationRoomNameBed", b =>
                 {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
                     b.Property<int>("AccomodationRoomNameId")
                         .HasColumnType("int");
 
                     b.Property<int>("BedId")
                         .HasColumnType("int");
 
-                    b.HasKey("AccomodationRoomNameId", "BedId");
+                    b.Property<int>("NumOfBedsOfThisType")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AccomodationRoomNameId");
 
                     b.HasIndex("BedId");
 
@@ -484,6 +501,9 @@ namespace travnik_backend.Migrations
                     b.Property<int>("NumOfLivingrooms")
                         .HasColumnType("int");
 
+                    b.Property<int>("NumOfOtherSpaces")
+                        .HasColumnType("int");
+
                     b.Property<int>("RoomNameId")
                         .HasColumnType("int");
 
@@ -529,6 +549,9 @@ namespace travnik_backend.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("BedId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("NumberOfBeds")
                         .HasColumnType("int");
 
                     b.HasKey("RoomsInRoomId", "BedId");

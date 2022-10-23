@@ -1,6 +1,8 @@
+using BenchmarkDotNet.Running;
 using Microsoft.AspNetCore.Http.Json;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
+using travnik_backend.Controllers;
 using travnik_backend.Models;
 
 namespace travnik_backend
@@ -9,8 +11,9 @@ namespace travnik_backend
     {
         public static void Main(string[] args)
         {
+            var summary = BenchmarkRunner.Run<AccomodationsController>();
             var builder = WebApplication.CreateBuilder(args);
-
+            
             // Add services to the container.
             builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(
             builder.Configuration.GetConnectionString("DefaultConnection")));

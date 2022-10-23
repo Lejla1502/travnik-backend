@@ -13,6 +13,8 @@ namespace travnik_backend.Models
         public RoomName RoomName { get; set; }
         public int NumOfRoomsOfThisType { get; set; }
         public double PricePerNight { get; set; }
+        public bool BreakfastIncluded { get; set; }
+        public bool PrepaymentNeeded { get; set; }
         //should below parameters be in a different table (RoomNameDetails
 
         //public bool HasBedroomOrLivingRoom { get; set; } //should this be in accomodation - no

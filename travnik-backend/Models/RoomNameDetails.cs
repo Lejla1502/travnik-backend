@@ -6,6 +6,7 @@
         public int NumOfBedrooms { get; set; }
         public int NumOfLivingrooms { get; set; }
         public int NumOfBathrooms { get; set; }
+        public int NumOfOtherSpaces { get; set; }
         public int NumOfGuests { get; set; }
         public int RoomNameId { get; set; }
         //one-to-one with RooomName

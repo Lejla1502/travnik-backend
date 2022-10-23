@@ -6,5 +6,6 @@
         public RoomsInRoom RoomsInRoom { get; set; }
         public int BedId { get; set; }
         public Bed Bed { get; set; }
+        public int NumberOfBeds { get; set; }
     }
 }
