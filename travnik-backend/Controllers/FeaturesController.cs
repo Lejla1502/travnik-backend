@@ -18,23 +18,23 @@ namespace travnik_backend.Controllers
 
         //GET: api/Features
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Features>>> GetFeatures()
+        public async Task<ActionResult<IEnumerable<TopLevelFeatures>>> GetFeatures()
         {
-            if (_dbContext.Features == null)
+            if (_dbContext.TopLevelFeatures == null)
                 return NotFound();
 
-            return await _dbContext.Features.ToListAsync();
+            return await _dbContext.TopLevelFeatures.ToListAsync();
         }
 
         //GET: api/Features/1
         [HttpGet("{id}")]
-        [ActionName(nameof(Features))]
-        public async Task<ActionResult<Features>> GetFeature(int id)
+        [ActionName(nameof(TopLevelFeatures))]
+        public async Task<ActionResult<TopLevelFeatures>> GetFeature(int id)
         {
-            if (_dbContext.Features == null)
+            if (_dbContext.TopLevelFeatures == null)
                 return NotFound();
 
-            var f = await _dbContext.Features.FindAsync(id);
+            var f = await _dbContext.TopLevelFeatures.FindAsync(id);
 
             if (f == null)
                 return NotFound();
@@ -44,12 +44,12 @@ namespace travnik_backend.Controllers
 
         //POST: api/Feature
         [HttpPost]
-        public async Task<ActionResult<Features>> PostFeature(Features feature)
+        public async Task<ActionResult<TopLevelFeatures>> PostFeature(TopLevelFeatures feature)
         {
-            _dbContext.Features.Add(feature);
+            _dbContext.TopLevelFeatures.Add(feature);
             await _dbContext.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(Features), new { id = feature.Id }, feature);
+            return CreatedAtAction(nameof(TopLevelFeatures), new { id = feature.Id }, feature);
         }
     }
 }

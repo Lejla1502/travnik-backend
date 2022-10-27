@@ -13,7 +13,7 @@
         public int AccomodationTypeId { get; set; }
         public Models.AccomodationType.AccomodationType AccomodationType { get; set; }
 
-        public List<Features> Features { get; set; }
+       // public List<TopLevelFeatures> Features { get; set; }
         public List<AccomodationRoomName> AccomodationRoomNames { get; set; }
         //public List<RoomName> Rooms { get; set; }
     }

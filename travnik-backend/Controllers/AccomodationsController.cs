@@ -28,8 +28,8 @@ namespace travnik_backend.Controllers
             if (_dbContext.Accomodations == null)
                 return NotFound();
 
-            return await _dbContext.Accomodations.Include(x=>x.AccomodationType)
-                .Include(x=>x.Features).ToListAsync();
+            return await _dbContext.Accomodations.Include(x => x.AccomodationType).ToListAsync();
+                //.Include(x=>x.Features).ToListAsync();
         }
 
         //GET: api/Accomodations/5
@@ -55,7 +55,7 @@ namespace travnik_backend.Controllers
             //    .Include(x => x.AccomodationRoomNames)
             //    .ThenInclude(x => x.RoomFeatures).FirstOrDefaultAsync();
 
-            var a = await _dbContext.Accomodations.Where(x => x.Id == id)
+            var a = await _dbContext.Accomodations.Where(x => x.Id == id).AsNoTracking()
             .Include(x => x.AccomodationType)
                 .Include(x => x.AccomodationRoomNames)
                 .ThenInclude(x => x.RoomName)
@@ -68,19 +68,24 @@ namespace travnik_backend.Controllers
                 .ThenInclude(x => x.Bed)
                 .Include(x => x.AccomodationRoomNames)
                 .ThenInclude(x => x.RoomFeatures)
-                //.Select(x => new GetSingleAccomodationDTO
+                .Include(x=>x.AccomodationRoomNames).ThenInclude(x=>x.TopLevelFeatures)
+                //.Select(z => new
                 //{
-                //    Id = id,
-                //    Name = x.Name,
-                //    Description = x.Description,
-                //    Email = x.Email,
-                //    Address = "jgfgfdjgd",
-                //    Website = "kjgkdfjg",
-                //    Phone = x.PhoneNumber
+                //    z.AccomodationRoomNames.Select(w => new
+                //    {
+                //        w.
+                //    })
+                //    //Id = id,
+                //    //Name = x.Name,
+                //    //Description = x.Description,
+                //    //Email = x.Email,
+                //    //Address = "jgfgfdjgd",
+                //    //Website = "kjgkdfjg",
+                //    //Phone = x.PhoneNumber
                 //})
                 .AsNoTracking().AsSplitQuery().FirstOrDefaultAsync();
 
-           // var a = await _dbContext.Accomodations.Where(x => x.Id == id).FirstOrDefaultAsync();
+            // var a = await _dbContext.Accomodations.Where(x => x.Id == id).FirstOrDefaultAsync();
             //.Include(x => x.AccomodationType)
             //    .Include(x => x.AccomodationRoomNames)
             //    .ThenInclude(x => x.RoomName)
@@ -109,11 +114,23 @@ namespace travnik_backend.Controllers
 
             //we nned to use firsOrDefualt so that it doesn't throw an error if it doesn't find an element
 
+            //var fg = a.AccomodationRoomNames.Select(
+            //   s => new
+            //   {
+            //       s.RoomName.Name,
+            //       BR = s.RoomName.AccomodationRoomNames.FirstOrDefault().AccomodationRoomNameBeds.ToList().Select(arnb =>
+            //       {
+            //           arnb.NumOfBedsOfThisType,
+            //            arnb.Bed.Name
+
+            //       })
+            //   });
+
             if (a == null)
                 return NotFound();
 
 
-            return  a;
+            return a;
         }
     }
 }

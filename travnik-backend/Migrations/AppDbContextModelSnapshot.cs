@@ -22,21 +22,6 @@ namespace travnik_backend.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("AccomodationFeatures", b =>
-                {
-                    b.Property<int>("AccomodationsId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("FeaturesId")
-                        .HasColumnType("int");
-
-                    b.HasKey("AccomodationsId", "FeaturesId");
-
-                    b.HasIndex("FeaturesId");
-
-                    b.ToTable("AccomodationFeatures");
-                });
-
             modelBuilder.Entity("AccomodationRoomNameRoomFeatures", b =>
                 {
                     b.Property<int>("AccomodationRoomNamesId")
@@ -50,6 +35,21 @@ namespace travnik_backend.Migrations
                     b.HasIndex("RoomFeaturesId");
 
                     b.ToTable("AccomodationRoomNameRoomFeatures");
+                });
+
+            modelBuilder.Entity("AccomodationRoomNameTopLevelFeatures", b =>
+                {
+                    b.Property<int>("AccomodationRoomNamesId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TopLevelFeaturesId")
+                        .HasColumnType("int");
+
+                    b.HasKey("AccomodationRoomNamesId", "TopLevelFeaturesId");
+
+                    b.HasIndex("TopLevelFeaturesId");
+
+                    b.ToTable("AccomodationRoomNameTopLevelFeatures");
                 });
 
             modelBuilder.Entity("AccomodationTypeListing", b =>
@@ -131,9 +131,14 @@ namespace travnik_backend.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("TopLevelFeaturesId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("AccomodationTypeId");
+
+                    b.HasIndex("TopLevelFeaturesId");
 
                     b.ToTable("Accomodations");
                 });
@@ -332,23 +337,6 @@ namespace travnik_backend.Migrations
                     b.HasIndex("OrganizerId");
 
                     b.ToTable("Events");
-                });
-
-            modelBuilder.Entity("travnik_backend.Models.Features", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Features");
                 });
 
             modelBuilder.Entity("travnik_backend.Models.Listing", b =>
@@ -597,19 +585,21 @@ namespace travnik_backend.Migrations
                     b.ToTable("RoomTypePackages");
                 });
 
-            modelBuilder.Entity("AccomodationFeatures", b =>
+            modelBuilder.Entity("travnik_backend.Models.TopLevelFeatures", b =>
                 {
-                    b.HasOne("travnik_backend.Models.Accomodation.Accomodation", null)
-                        .WithMany()
-                        .HasForeignKey("AccomodationsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
-                    b.HasOne("travnik_backend.Models.Features", null)
-                        .WithMany()
-                        .HasForeignKey("FeaturesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TopLevelFeatures");
                 });
 
             modelBuilder.Entity("AccomodationRoomNameRoomFeatures", b =>
@@ -623,6 +613,21 @@ namespace travnik_backend.Migrations
                     b.HasOne("travnik_backend.Models.RoomFeatures", null)
                         .WithMany()
                         .HasForeignKey("RoomFeaturesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("AccomodationRoomNameTopLevelFeatures", b =>
+                {
+                    b.HasOne("travnik_backend.Models.AccomodationRoomName", null)
+                        .WithMany()
+                        .HasForeignKey("AccomodationRoomNamesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("travnik_backend.Models.TopLevelFeatures", null)
+                        .WithMany()
+                        .HasForeignKey("TopLevelFeaturesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -679,6 +684,10 @@ namespace travnik_backend.Migrations
                         .HasForeignKey("AccomodationTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("travnik_backend.Models.TopLevelFeatures", null)
+                        .WithMany("Accomodations")
+                        .HasForeignKey("TopLevelFeaturesId");
 
                     b.Navigation("AccomodationType");
                 });
@@ -843,6 +852,11 @@ namespace travnik_backend.Migrations
             modelBuilder.Entity("travnik_backend.Models.RoomType", b =>
                 {
                     b.Navigation("Rooms");
+                });
+
+            modelBuilder.Entity("travnik_backend.Models.TopLevelFeatures", b =>
+                {
+                    b.Navigation("Accomodations");
                 });
 #pragma warning restore 612, 618
         }

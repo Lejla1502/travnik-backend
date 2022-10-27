@@ -5,6 +5,7 @@ namespace travnik_backend.Models
     public class AccomodationRoomNameBed
     {
         public int Id { get; set; }
+
         [ForeignKey("AccomodationRoomNameId")]
         public int AccomodationRoomNameId { get; set; }
         public AccomodationRoomName AccomodationRoomName { get; set; }

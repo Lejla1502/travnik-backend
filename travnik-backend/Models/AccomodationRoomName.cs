@@ -24,6 +24,7 @@ namespace travnik_backend.Models
         
         public List<AccomodationRoomNameBed> AccomodationRoomNameBeds { get; set; }
         public List<RoomFeatures> RoomFeatures { get; set; }
+        public List<TopLevelFeatures> TopLevelFeatures { get; set; }
 
     }
 }
